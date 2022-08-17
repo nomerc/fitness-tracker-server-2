@@ -1,0 +1,38 @@
+{
+  "name": "fitness-tracker-server",
+  "version": "2.0.0",
+  "engines": {
+    "node": "14.x"
+  },
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.2.0",
+    "morgan": "^1.10.0",
+    "connect-mongo": "^4.6.0",
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.7",
+    "express-session": "^1.17.2",
+    "passport": "^0.5.2",
+    "passport-facebook": "^3.0.0",
+    "passport-github2": "^0.1.12",
+    "passport-google-oauth": "^2.0.0",
+    "passport-instagram": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
+    "validator": "^13.7.0"
+  }
+}
