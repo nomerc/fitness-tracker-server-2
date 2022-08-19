@@ -1,6 +1,7 @@
-const express = require("express");
-const Workout = require("../models/Workout");
-const router = express.Router();
+const express = require("express"),
+  router = express.Router(),
+  authenticate = require("../middleware/auth");
+
 const {
   createWorkout,
   updateWorkout,
@@ -9,9 +10,8 @@ const {
   deleteWorkout,
 } = require("../controllers/workoutController");
 
-// const authenticate = require("../middleware/auth");
+router.use(authenticate);
 
-// router.use(authenticate);
 router.route("/").get(getWorkouts);
 router.route("/").post(createWorkout);
 router.route("/:date").get(getSingleWorkout);

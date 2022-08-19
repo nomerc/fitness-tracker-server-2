@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-// const Product = require("../models/Product");
 
 //Routes
 const authGoogleRoute = require("./authGoogle");
@@ -17,44 +16,15 @@ router.use("/instagram", authInstagramRoute);
 router.use("/github", authGithubRoute);
 router.use("/local", authLocalRoute);
 
-router.get("/pages/register", (req, res) => {
-  res.render("pages/register");
+router.post("/isAuthenticated", function (req, res) {
+  res.send(req.isAuthenticated());
 });
 
-router.get("/pages/signIn", (req, res) => {
-  res.render("pages/signIn");
-});
-
-//in case of succesfully logged or registered
-router.get("/success", (req, res) => {
-  res.render("pages/success", { user: req.user });
-});
-//in case of failure
-router.get("/error", (req, res) =>
-  res.send("error logging in " + req.query.message)
-);
-
-//get products of currently logged user
-//just for demonstration purposes
-// router.get("/pages/products", (req, res, next) => {
-//   if (req.user) {
-//     Product.find({ user_id: req.user._id }, (err, products) => {
-//       if (err) {
-//         next(err);
-//       }
-//       res.status(200).send({ products });
-//       // SSR
-//       // res.render("pages/success", { user: req.user, products });
-//     });
-//   } else next({ err: "User not defined" });
-// });
-
-router.get("/signout", function (req, res) {
-  req.logout();
-  res.status(200).send({ message: "Signed out" });
-
-  //SSR
-  // res.redirect("/");
+router.post("/signout", function (req, res) {
+  req.session.destroy(function (err) {
+    res.clearCookie("connect.sid");
+    res.status(200).send({ message: "Signed out" });
+  });
 });
 
 module.exports = router;

@@ -3,7 +3,7 @@ const express = require("express"),
   GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 const router = express.Router();
-const { auth, verify } = require("../controllers/authController");
+const { verify } = require("../controllers/authController");
 
 passport.use(
   new GoogleStrategy(
@@ -16,11 +16,6 @@ passport.use(
     verify
   )
 );
-// router.get("/success", (req, res) => {
-//   res.render("pages/success", { user: req.user });
-// });
-
-// router.get("/error", (req, res) => res.send("error logging in"));
 
 router.get(
   "/",
@@ -30,9 +25,6 @@ router.get(
 router.get(
   "/callback",
   passport.authenticate("google", {
-    //SSR
-    // successRedirect: "../success",
-    // failureRedirect: "../error",
     failWithError: true,
   }),
 
@@ -54,7 +46,6 @@ router.get(
   (err, req, res, next) => {
     next(err);
   }
-  // auth
 );
 
 module.exports = router;

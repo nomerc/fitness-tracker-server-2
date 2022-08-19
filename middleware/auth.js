@@ -1,19 +1,10 @@
-// const jwt = require("jsonwebtoken");
-// const { User } = require("../models/User");
+// test authentication
+const authenticate = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  // return err();
+  // res.status(401).send({ err: "unauthenticated" });
+};
 
-// //check if req has valid JWT access token
-// let authenticate = (req, res, next) => {
-//   let token = req.header("x-access-token");
-//   //verify JWT
-//   jwt.verify(token, User.getJWTSecret(), (err, decoded) => {
-//     if (err) {
-//       res.status(401).send(err);
-//     } else {
-//       //jwt is valid
-//       req.user_id = decoded._id;
-//       next();
-//     }
-//   });
-// };
-
-// module.exports = authenticate;
+module.exports = authenticate;

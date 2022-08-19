@@ -19,32 +19,9 @@ passport.use(
 
       if (user.verifyPassword(password)) return done(null, user);
       return done(null, false);
-
-      //same but with promises and async crypt(see User.js)
-      //promise reject should be processed somewhere later...
-      //   user
-      //     .verifyPassword(password)
-      //     .then((is_pass_correct) => {
-      //       if (is_pass_correct) return done(null, user);
-      //       return done(null, false);
-      //     })
-      //     .catch((e) => {
-      //       return Promise.reject("Password verification error \n" + e);
-      //     });
     });
   })
 );
-
-//these routes can be used in each authProvider file separately in case if different response from each provider is needed
-//don't forget to change routes from ../sucess ../error to success and error correspondively
-
-// router.get("/success", (req, res) => {
-//   res.render("pages/success", { user: req.user });
-// });
-
-// router.get("/error", (req, res) =>
-//   res.send("error logging in " + req.query.message)
-// );
 
 router.post(
   "/",
@@ -61,7 +38,6 @@ router.post(
     });
   },
   (err, req, res, next) => {
-    console.log(err);
     next(err);
   }
 );
@@ -90,13 +66,5 @@ router.post("/register", async (req, res, next) => {
       return next(err);
     };
 });
-
-// test authentication
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/");
-}
 
 module.exports = router;

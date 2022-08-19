@@ -1,6 +1,5 @@
 const User = require("../models/User");
 
-//?async?
 exports.auth = (req, res) => {
   // res.send(req.user);
   res.redirect("success");

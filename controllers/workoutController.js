@@ -1,20 +1,7 @@
 const Workout = require("../models/Workout");
-// const CustomError = require("../utilities/CustomError");
-// const asyncMiddleware = require('../middlewares/asyncMiddleware');
 
 exports.getSingleWorkout = async (req, res) => {
   const workoutDate = req.params.date;
-
-  // if (req.user) {
-  //     Product.find({ user_id: req.user._id }, (err, products) => {
-  //       if (err) {
-  //         next(err);
-  //       }
-  //       res.status(200).send({ products });
-  //       // SSR
-  //       // res.render("pages/success", { user: req.user, products });
-  //     });
-  //   } else next({ err: "User not defined" });
 
   const workout =
     (await Workout.findOne({ _userId: req.user._id, date: workoutDate })) ||

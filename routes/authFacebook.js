@@ -2,7 +2,7 @@ const express = require("express"),
   passport = require("passport"),
   FacebookStrategy = require("passport-facebook").Strategy,
   router = express.Router(),
-  { auth, verify } = require("../controllers/authController");
+  { verify } = require("../controllers/authController");
 
 passport.use(
   new FacebookStrategy(

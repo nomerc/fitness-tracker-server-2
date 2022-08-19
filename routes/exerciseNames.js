@@ -1,5 +1,4 @@
 const express = require("express");
-const Workout = require("../models/Workout");
 const router = express.Router();
 const {
   getExerciseNames,
